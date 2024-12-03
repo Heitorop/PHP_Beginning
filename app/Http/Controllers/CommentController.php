@@ -21,7 +21,7 @@ class CommentController extends Controller
      */
     public function store(Request $request,string $postId)
     {
-        $post = Post::findOrFail($postId);
+        $post = Post::find($postId);
         $comment = new Comment([
             'content' => $request -> input('content'),
             'post_id' => $postId

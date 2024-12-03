@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class TagConroller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::with('comments')->get();
-        return $posts;
+        //
     }
 
     /**
@@ -21,7 +20,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create($request->all());
+        Tag::create($request->all());
     }
 
     /**
@@ -29,8 +28,15 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::with('comments')->find($id);
-        return $post;
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
     }
 
     /**
@@ -38,8 +44,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $post = Post::find($id);
-        $post->update($request->all());
+        //
     }
 
     /**
@@ -47,7 +52,6 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        $post = Post::find($id);
-        $post->delete();
+        //
     }
 }

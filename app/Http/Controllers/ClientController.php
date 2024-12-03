@@ -31,7 +31,7 @@ class ClientController extends Controller
      */
     public function show(string $id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         return $client;
     }
 
@@ -41,7 +41,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         $client->update($request->all());
     }
 
@@ -50,7 +50,7 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        $client = Client::findOrFail($id);
+        $client = Client::find($id);
         $client->delete();
     }
 }
