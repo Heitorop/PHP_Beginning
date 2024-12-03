@@ -12,7 +12,8 @@ class TagConroller extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return $tags;
     }
 
     /**

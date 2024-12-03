@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('comments')->get();
+        $posts = Post::with('comments', 'tags')->get();
         return $posts;
     }
 
@@ -22,6 +22,30 @@ class PostController extends Controller
     public function store(Request $request)
     {
         Post::create($request->all());
+    }
+
+    public function assignTags(Request $request, $postId)
+    {
+        $post = Post::find($postId);
+
+        $post->tags()->syncWithoutDetaching($request->input('tags'));
+    }
+
+
+    public function removeTags(Request $request, $postId)
+    {
+        $post = Post::find($postId);
+
+        $tags = $request->input('tags');
+
+        if (is_array($tags)) {
+            $post->tags()->detach($tags);
+        }
+
+        return response()->json([
+            'message' => 'Selected tags removed successfully',
+            'removed_tags' => $tags
+        ]);
     }
 
     /**

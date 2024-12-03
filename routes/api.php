@@ -42,6 +42,8 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/post/{id}', 'show');
     Route::post('/post/create', 'store');
     Route::put('/post/update/{id}', 'update');
+    Route::post('/post/{id}/assign-tags', 'assignTags');
+    Route::post('/post/{id}/remove-tags', 'removeTags');
     Route::delete('/post/delete/{id}', 'destroy');
 });
 
@@ -51,4 +53,5 @@ Route::controller(CommentController::class)->group(function () {
 
 Route::controller(TagConroller::class)->group(function () {
     Route::post('/tag/create', 'store');
+    Route::get('/tags', 'index');
 });
