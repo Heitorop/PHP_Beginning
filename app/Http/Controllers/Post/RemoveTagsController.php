@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
-class RemoveTagsController extends Controller
+class RemoveTagsController extends BaseController
 {
-   public function __invoke(Request $request, $postId){
+   public function __invoke(Request $request, $postId)
+   {
       $post = Post::find($postId);
 
       $tags = $request->input('tags');
 
-      if (is_array($tags)) {
-         $post->tags()->detach($tags);
-      }
+      $this->service->remove($post, $tags);
+
+     
 
       return response()->json([
          'message' => 'Selected tags removed successfully',
